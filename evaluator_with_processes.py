@@ -53,7 +53,7 @@ if __name__ == "__main__":
         2. downloader - download file from given server
     """
     # first take server details
-    server_host = raw_input("Please server host: ")
+    server_host = raw_input("Please enter server host: ")
 
     # start sub processes
     uploader = Process(target=upload, args=(server_host, ))
