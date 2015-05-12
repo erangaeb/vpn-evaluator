@@ -13,8 +13,8 @@ logging.basicConfig(level=logging.DEBUG,
 def upload(server):
     """
     SCP local file to given remote host. This function will be called by
-    seperate process. Seperate process can be use to execute this functiona
-    paralley with downloader.
+    separate process. Separate process can be use to execute this function
+    parallel with downloader.
 
     Args
         server: server ip/name
@@ -30,9 +30,9 @@ def upload(server):
 
 def download(server):
     """
-    SCP file in a given rmote host to local. This function will be called by
-    seperate process. By using seperate process we can execute this function
-    parellely with uploader
+    SCP file in a given remote host to local. This function will be called by
+    separate process. By using separate process we can execute this function
+    parallel with uploader
 
     Args
         server: server ip/name
@@ -48,11 +48,15 @@ def download(server):
 
 if __name__ == "__main__":
     """
-    We are creating two seperate process here
+    We are creating two separate process here
         1. uploader - upload file to a given server
         2. downloader - download file from given server
     """
-    uploader = Process(target=upload, args=('staging_service1', ))
+    # first take server details
+    server_host = raw_input("Please server host: ")
+
+    # start sub processes
+    uploader = Process(target=upload, args=(server_host, ))
     uploader.start()
-    downloader = Process(target=download, args=('staging_service1', ))
+    downloader = Process(target=download, args=(server_host, ))
     downloader.start()

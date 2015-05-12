@@ -15,8 +15,8 @@ logging.basicConfig(level=logging.DEBUG,
 def upload(server):
     """
     SCP local file to remote. This need to be call from a thread in order to
-    evaluate the netwotk peformace. Copying file need to be more than
-    10MB in size. Scp file more than 10 times to evaluate the peformance
+    evaluate the network performance. Copying file need to be more than
+    10MB in size. Scp file more than 10 times to evaluate the performance
 
     Args:
         server - server IP/Name
@@ -32,9 +32,9 @@ def upload(server):
 
 def download(server):
     """
-    SCP file in rmote host to local. This function need to be call from thread
-    in order to evaluate the netwotk peformace. Copying file need to be more
-    than 10MB in size. SCP file more than 10 times to evaluate the peformance
+    SCP file in remote host to local. This function need to be call from thread
+    in order to evaluate the network performance. Copying file need to be more
+    than 10MB in size. SCP file more than 10 times to evaluate the performance
 
     Args:
         server - server IP/Name
