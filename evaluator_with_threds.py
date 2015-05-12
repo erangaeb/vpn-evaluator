@@ -19,7 +19,7 @@ def upload(server):
     10MB in size. Scp file more than 10 times to evaluate the peformance
 
     Args:
-        server - server IP
+        server - server IP/Name
     """
     for i in range(10):
         start_time = time.time()
@@ -37,7 +37,7 @@ def download(server):
     than 10MB in size. SCP file more than 10 times to evaluate the peformance
 
     Args:
-        server - server IP
+        server - server IP/Name
     """
     for i in range(10):
         start_time = time.time()
@@ -47,12 +47,13 @@ def download(server):
         logging.debug('End downloading...')
         logging.debug('Time taken by downloader: %s' % (end_time - start_time))
 
-# Create two threads as follows
+# Create two threads from here
 try:
-    thread.start_new_thread(upload, ("cmb_service1", ))
-    thread.start_new_thread(download, ("cmb_service1", ))
+    thread.start_new_thread(upload, ("staging_service1", ))
+    thread.start_new_thread(download, ("staging_service1", ))
 except:
     print "Error: unable to start thread"
 
+# wait in main thread
 while 1:
     pass
