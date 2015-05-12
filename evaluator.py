@@ -1,12 +1,15 @@
+#!/usr/bin/python
+
 import os
-import threading
+import thread
 import logging
 import time
+
 
 logging.basicConfig(level=logging.DEBUG,
                     filename='logs/evaluator.log',
                     filemode='w',
-                    format='[%(asctime)s] (%(threadName)-10s) %(message)s',)
+                    format='[%(asctime)s] %(message)s',)
 
 
 def upload(server):
@@ -18,13 +21,13 @@ def upload(server):
     Args:
         server - server IP
     """
-    for i in range(100):
+    for i in range(10):
         start_time = time.time()
-        logging.debug('Start uploading: %d' %i)
-        #os.system("scp uploads/18UPLOAD %s:" % server)
-        #end_time = time.time()
-        #logging.debug('End uploading: ')
-        #logging.debug('Time taken by uploader: %s' % (end_time - start_time))
+        logging.debug('Start uploading: %d' % i)
+        os.system("scp uploads/18UPLOAD %s:" % server)
+        end_time = time.time()
+        logging.debug('End uploading: ')
+        logging.debug('Time taken by uploader: %s' % (end_time - start_time))
 
 
 def download(server):
@@ -38,20 +41,18 @@ def download(server):
     """
     for i in range(10):
         start_time = time.time()
-        logging.debug('Start downloading: %d' %i)
-        #os.system("scp %s:18DOWNLOAD downloads/" % server)
-        #end_time = time.time()
-        #logging.debug('End downloading...')
-        #logging.debug('Time taken by downloader: %s' % (end_time - start_time))
+        logging.debug('Start downloading: %d' % i)
+        os.system("scp %s:18DOWNLOAD downloads/" % server)
+        end_time = time.time()
+        logging.debug('End downloading...')
+        logging.debug('Time taken by downloader: %s' % (end_time - start_time))
 
+# Create two threads as follows
+try:
+    thread.start_new_thread(upload, ("cmb_service1", ))
+    thread.start_new_thread(download, ("cmb_service1", ))
+except:
+    print "Error: unable to start thread"
 
-# We start two thread in here
-#    1. uploader: thread for upload files to remote server
-#    2. downloader: thread fot download files from remote server
-uploader = threading.Thread(name='uploader',
-                            target=upload('cmb_service1'))
-downloader = threading.Thread(name='downloader',
-                              target=download('cmb_service1'))
-
-uploader.start()
-downloader.start()
+while 1:
+    pass
